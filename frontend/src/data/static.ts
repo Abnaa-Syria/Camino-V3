@@ -14,95 +14,95 @@ import {
 } from '../lib/images';
 
 // Collections - using local images
-export const mockCollections: Collection[] = [
+export const staticCollections: Collection[] = [
   {
     id: '1',
     slug: 'short-breaks-by-train',
     title: 'Short Breaks by Train',
     description: 'Weekend getaways and quick escapes accessible by rail',
-    imageUrl: getImageByIndex(0), // julentto-photography
+    imageUrl: getImageByIndex(0),
   },
   {
     id: '2',
     slug: 'coastal-journeys',
     title: 'Coastal Journeys',
     description: 'Follow the coastline through charming seaside towns',
-    imageUrl: getImageByIndex(1), // ryan-spencer
+    imageUrl: getImageByIndex(1),
   },
   {
     id: '3',
     slug: 'mountain-escapes',
     title: 'Mountain Escapes',
     description: 'Alpine adventures and high-altitude explorations',
-    imageUrl: getImageByIndex(2), // fabio-comparelli
+    imageUrl: getImageByIndex(2),
   },
   {
     id: '4',
     slug: 'cultural-capitals',
     title: 'Cultural Capitals',
     description: 'Discover art, history, and cuisine in Europe\'s great cities',
-    imageUrl: getImageByIndex(3), // alex-azabache
+    imageUrl: getImageByIndex(3),
   },
   {
     id: '5',
     slug: 'rural-retreats',
     title: 'Rural Retreats',
     description: 'Peaceful countryside journeys through pastoral landscapes',
-    imageUrl: getImageByIndex(4), // yousef-alfuhigi
+    imageUrl: getImageByIndex(4),
   },
   {
     id: '6',
     slug: 'wine-regions',
     title: 'Wine Regions',
     description: 'Vineyard tours and tastings in renowned wine country',
-    imageUrl: getImageByIndex(5), // ian-dooley
+    imageUrl: getImageByIndex(5),
   },
   {
     id: '7',
     slug: 'northern-lights',
     title: 'Northern Lights',
     description: 'Arctic adventures and aurora hunting in the far north',
-    imageUrl: getImageByIndex(6), // mesut-kaya
+    imageUrl: getImageByIndex(6),
   },
   {
     id: '8',
     slug: 'island-hopping',
     title: 'Island Hopping',
     description: 'Explore Mediterranean islands by ferry and train',
-    imageUrl: getImageByIndex(7), // jack-ward
+    imageUrl: getImageByIndex(7),
   },
   {
     id: '9',
     slug: 'historic-railways',
     title: 'Historic Railways',
     description: 'Journey on scenic heritage lines and classic routes',
-    imageUrl: getImageByIndex(8), // tom-barrett
+    imageUrl: getImageByIndex(8),
   },
   {
     id: '10',
     slug: 'winter-wonderlands',
     title: 'Winter Wonderlands',
     description: 'Snow-covered landscapes and festive markets',
-    imageUrl: getImageByIndex(9), // neom
+    imageUrl: getImageByIndex(9),
   },
   {
     id: '11',
     slug: 'spring-blossoms',
     title: 'Spring Blossoms',
     description: 'Cherry blossoms and wildflower meadows in bloom',
-    imageUrl: getImageByIndex(0), // cycle back
+    imageUrl: getImageByIndex(0),
   },
   {
     id: '12',
     slug: 'autumn-colors',
     title: 'Autumn Colors',
     description: 'Fall foliage tours through golden landscapes',
-    imageUrl: getImageByIndex(1), // cycle back
+    imageUrl: getImageByIndex(1),
   },
 ];
 
 // Destinations
-export const mockDestinations: Destination[] = [
+export const staticDestinations: Destination[] = [
   {
     id: '1',
     slug: 'scotland',
@@ -356,7 +356,7 @@ export const mockDestinations: Destination[] = [
 ];
 
 // Trips - generating 30 trips
-export const mockTrips: Trip[] = [
+export const staticTrips: Trip[] = [
   {
     id: '1',
     slug: 'scottish-highlands-explorer',
@@ -589,7 +589,7 @@ export const mockTrips: Trip[] = [
   },
 ];
 
-// Generate remaining 25 trips programmatically
+// Generate remaining trips
 const additionalTrips: Omit<Trip, 'id' | 'slug' | 'title'>[] = [
   {
     description: 'Explore Austria\'s imperial cities and mountain regions',
@@ -696,7 +696,6 @@ const additionalTrips: Omit<Trip, 'id' | 'slug' | 'title'>[] = [
   },
 ];
 
-// Generate more trips to reach 30 total
 const tripTitles = [
   { title: 'Austria Imperial Cities', slug: 'austria-imperial-cities' },
   { title: 'English Countryside Weekend', slug: 'english-countryside-weekend' },
@@ -707,10 +706,10 @@ const tripTitles = [
 
 for (let i = 0; i < additionalTrips.length; i++) {
   const trip = additionalTrips[i];
-  mockTrips.push({
-    id: String(mockTrips.length + 1),
-    slug: tripTitles[i]?.slug || `trip-${mockTrips.length + 1}`,
-    title: tripTitles[i]?.title || `Trip ${mockTrips.length + 1}`,
+  staticTrips.push({
+    id: String(staticTrips.length + 1),
+    slug: tripTitles[i]?.slug || `trip-${staticTrips.length + 1}`,
+    title: tripTitles[i]?.title || `Trip ${staticTrips.length + 1}`,
     ...trip,
   });
 }
@@ -745,7 +744,7 @@ const moreTripSeeds = [
 ];
 
 moreTripSeeds.forEach((seed, idx) => {
-  const tripId = mockTrips.length + 1;
+  const tripId = staticTrips.length + 1;
   const stops = seed.cities.map((city, i) => ({
     id: String(i + 1),
     city,
@@ -754,7 +753,7 @@ moreTripSeeds.forEach((seed, idx) => {
     coordinates: { lat: 50 + Math.random() * 10, lng: 5 + Math.random() * 15 },
   }));
 
-  mockTrips.push({
+  staticTrips.push({
     id: String(tripId),
     slug: seed.title.toLowerCase().replace(/\s+/g, '-').replace(/&/g, 'and'),
     title: seed.title,
@@ -773,121 +772,143 @@ moreTripSeeds.forEach((seed, idx) => {
   });
 });
 
-// Articles with realistic content
-const articleTitles = [
-  'The Art of Slow Travel: Why Trains Beat Planes',
-  'Discovering Hidden Gems in the Scottish Highlands',
-  'A Guide to Sustainable Travel in Europe',
-  'Venice to Florence: A Journey Through Italian Art',
-  '10 Essential Tips for First-Time Train Travelers',
-  'The Best Time to Visit the Swiss Alps',
-  'Exploring Coastal Towns by Rail',
-  'Cultural Immersion: Living Like a Local',
-  'Wine Regions Accessible by Train',
-  'Northern Lights: A Winter Adventure',
-  'Historic Railways Worth the Journey',
-  'Budget-Friendly European Rail Passes',
-  'Solo Travel: Safety Tips for Train Journeys',
-  'Photography Tips for Train Travel',
-  'Packing Light: Essentials for Rail Travel',
-  'Local Cuisine Along European Rail Routes',
-  'Family-Friendly Train Trips in Europe',
-  'Accessibility on European Railways',
-  'Night Trains: Sleeping Your Way Across Europe',
-  'Eco-Friendly Travel: Reducing Your Carbon Footprint',
-];
+// Articles with full content
+export const staticArticles: Article[] = [
+  {
+    id: '1',
+    slug: 'discovering-scotland-by-train',
+    title: 'Discovering Scotland by Train',
+    excerpt: 'Explore the dramatic landscapes and historic cities of Scotland through an unforgettable rail journey.',
+    content: `Scotland offers some of the most breathtaking train journeys in Europe. From the bustling streets of Edinburgh to the remote highlands, traveling by train provides an intimate view of this beautiful country.
 
-const articleExcerpts = [
-  'Slow travel isn\'t just a trend—it\'s a philosophy that transforms how we experience the world. Discover why train journeys offer a richer, more meaningful travel experience.',
-  'From ancient castles to dramatic landscapes, the Scottish Highlands offer some of Europe\'s most breathtaking scenery. Here\'s how to explore it all by train.',
-  'Traveling sustainably doesn\'t mean sacrificing comfort or adventure. Learn how train travel can reduce your environmental impact while enhancing your journey.',
-  'Follow in the footsteps of Renaissance masters as you journey from Venice to Florence, discovering art, architecture, and culture along the way.',
-  'New to train travel? Our comprehensive guide covers everything from booking tickets to navigating stations, ensuring your first journey is smooth and stress-free.',
-  'Whether you\'re seeking summer hiking or winter skiing, discover the best times to experience the Swiss Alps and how to get there by train.',
-  'Europe\'s coastline is dotted with charming towns accessible by rail. Explore hidden beaches, fresh seafood, and stunning views on these coastal journeys.',
-  'True travel isn\'t about checking destinations off a list—it\'s about connecting with local culture. Learn how to immerse yourself in the places you visit.',
-  'From Bordeaux to Tuscany, Europe\'s wine regions are surprisingly accessible by train. Plan your perfect wine-tasting journey with our guide.',
-  'Witnessing the Northern Lights is a bucket-list experience. Discover the best train routes to reach prime aurora viewing locations in Scandinavia.',
-  'Step back in time on these historic railway lines, where the journey itself becomes the destination. Experience engineering marvels and scenic routes.',
-  'Traveling Europe by train doesn\'t have to break the bank. Learn about rail passes, discounts, and money-saving tips for budget-conscious travelers.',
-  'Solo travel by train offers freedom and adventure. Our safety guide ensures you can explore confidently and independently.',
-  'Train journeys provide unique photography opportunities. Capture stunning landscapes, station architecture, and candid moments with these tips.',
-  'Packing efficiently is key to enjoying train travel. Discover the essentials that will keep you comfortable without weighing you down.',
-  'Food is an integral part of travel. Explore local specialties and regional cuisine along Europe\'s most scenic rail routes.',
-  'Train travel is perfect for families. Discover routes and tips that make traveling with children enjoyable and stress-free.',
-  'European railways are increasingly accessible. Learn about facilities, services, and resources available for travelers with mobility needs.',
-  'Maximize your travel time by sleeping on night trains. Experience the romance of overnight journeys while saving on accommodation.',
-  'Every journey has an environmental impact. Learn how train travel compares to other modes of transportation and how to travel more sustainably.',
-];
+The journey begins in Edinburgh, Scotland's capital, where you can explore the historic Royal Mile and the imposing Edinburgh Castle. The train then winds through the Scottish Highlands, passing by lochs, mountains, and ancient castles.
 
-const articleContent = [
-  `Slow travel represents a fundamental shift in how we approach journeys. Instead of rushing from destination to destination, slow travel encourages us to savor each moment, to notice the subtle changes in landscape, and to connect with the rhythm of the places we pass through.
+One of the highlights is the journey to Fort William, where you can see Ben Nevis, the highest peak in the British Isles. The route offers stunning views of the Glenfinnan Viaduct, made famous by the Harry Potter films.
 
-Train travel embodies this philosophy perfectly. Unlike air travel, which transports you from point A to point B with minimal awareness of the space between, trains reveal the gradual transitions between regions, cultures, and landscapes. You witness the changing architecture, the shifting terrain, and the evolving way of life.
-
-The benefits extend beyond the journey itself. Train stations are often located in city centers, eliminating the need for lengthy transfers. The journey becomes part of the experience, not just a means to an end. You can read, work, or simply watch the world go by, arriving at your destination relaxed rather than stressed.
-
-Moreover, train travel offers environmental advantages. Trains produce significantly fewer emissions per passenger than airplanes, making them a more sustainable choice for conscious travelers. By choosing trains, you're not just traveling—you're making a statement about the kind of world you want to support.
-
-The social aspect of train travel shouldn't be overlooked either. Shared compartments and dining cars create opportunities for meaningful interactions with fellow travelers and locals. These chance encounters often become the most memorable parts of a journey.
-
-As we navigate an increasingly fast-paced world, slow travel by train offers a welcome antidote. It reminds us that the journey matters as much as the destination, and that sometimes, the best way to truly see a place is to take your time getting there.`,
-
-  `The Scottish Highlands represent one of Europe's last great wildernesses, a landscape of dramatic mountains, deep lochs, and ancient history. Exploring this region by train offers a unique perspective on Scotland's natural beauty and cultural heritage.
-
-The journey begins in Edinburgh, where you can explore the historic Royal Mile before boarding the train north. As you leave the city behind, the landscape transforms. Rolling hills give way to rugged mountains, and the occasional castle ruins dot the hillsides, reminders of Scotland's turbulent past.
-
-Inverness serves as the gateway to the Highlands, and from here, the West Highland Line offers one of the world's most scenic railway journeys. The route winds through Glenfinnan, where the famous viaduct featured in the Harry Potter films spans a dramatic valley. The Jacobite steam train runs along this route during summer months, adding to the magical atmosphere.
-
-Fort William, nestled at the foot of Ben Nevis, provides access to hiking trails and outdoor adventures. The town itself is charming, with local pubs serving traditional Scottish fare and whisky tastings that introduce you to the region's famous spirits.
-
-The journey continues to Mallaig, where ferries connect to the Isle of Skye. This remote island offers some of Scotland's most stunning scenery, from the Quiraing's otherworldly rock formations to the Fairy Pools' crystal-clear waters.
-
-Throughout your journey, you'll encounter warm Scottish hospitality, traditional music in local pubs, and stories that bring the landscape to life. The Highlands aren't just a destination—they're an experience that stays with you long after you've returned home.`,
-
-  `Sustainable travel has become increasingly important as we recognize our impact on the planet. Train travel offers one of the most environmentally friendly ways to explore Europe, combining adventure with responsibility.
-
-The environmental benefits of train travel are significant. Trains produce up to 90% fewer carbon emissions per passenger kilometer compared to airplanes. For a journey from London to Paris, choosing the train over a flight reduces your carbon footprint by approximately 90%. This impact becomes even more pronounced on longer journeys.
-
-But sustainability extends beyond emissions. Train travel supports local economies in ways that air travel doesn't. Train stations are typically located in city centers, meaning travelers spend money in local businesses, stay in local accommodations, and contribute to the communities they visit.
-
-Many European rail operators are investing in renewable energy. Some countries, like the Netherlands, already run their entire rail network on wind power. Others are transitioning to electric trains powered by renewable sources, further reducing environmental impact.
-
-Sustainable travel also means traveling thoughtfully. Trains encourage slower, more mindful journeys. You're more likely to stay longer in each destination, reducing the environmental cost of frequent short trips. This approach aligns with the principles of slow travel, which emphasizes quality over quantity.
-
-Choosing train travel is also a vote for sustainable infrastructure. By supporting rail networks, you're encouraging investment in public transportation that benefits entire communities, not just travelers.
-
-The future of travel is sustainable, and trains are leading the way. By choosing rail for your next European adventure, you're not just seeing the continent—you're helping preserve it for future generations.`,
-];
-
-// Generate articles with varied content
-export const mockArticles: Article[] = articleTitles.map((title, i) => {
-  const slug = title.toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-|-$/g, '');
-  
-  const category = i % 4 === 0 ? 'Destinations' : i % 4 === 1 ? 'Tips' : i % 4 === 2 ? 'Stories' : 'Culture';
-  
-  // Use detailed content for first few articles, shorter for others
-  const content = i < articleContent.length 
-    ? articleContent[i]
-    : `${articleExcerpts[i]}\n\n${title} explores the fascinating world of European train travel. From practical tips to inspiring stories, this article delves into the unique experiences that await travelers who choose to explore by rail.\n\nWhether you're planning your first train journey or looking to discover new routes, this guide provides valuable insights into making the most of your European adventure. The combination of comfort, sustainability, and scenic beauty makes train travel an increasingly popular choice for modern travelers.\n\nAs you read through this article, you'll discover why so many travelers are choosing trains over planes, and how this shift is transforming the way we experience Europe.`;
-
-  return {
-    id: String(i + 1),
-    slug,
-    title,
-    excerpt: articleExcerpts[i],
-    content,
-    imageUrl: getImageByIndex(i % 10),
-    publishedAt: new Date(2024, Math.floor(i / 2), (i % 28) + 1).toISOString(),
+Traveling by train in Scotland is not just about the destination—it's about the journey itself. The slow pace allows you to truly appreciate the dramatic landscapes and connect with the local culture.`,
+    imageUrl: getImageByIndex(0),
+    publishedAt: new Date(2024, 0, 15).toISOString(),
     author: 'Camino Editorial',
-    category,
-  };
-});
+    category: 'Destinations',
+  },
+  {
+    id: '2',
+    slug: 'slow-travel-philosophy',
+    title: 'The Philosophy of Slow Travel',
+    excerpt: 'Why taking your time makes for a more meaningful travel experience.',
+    content: `Slow travel is more than just a trend—it's a philosophy that transforms how we experience the world. Instead of rushing from one destination to another, slow travel encourages us to immerse ourselves in local culture, connect with communities, and appreciate the journey itself.
+
+When you travel slowly, you have time to notice the small details: the way light filters through a train window, the conversations with locals, the taste of regional cuisine. These moments create lasting memories that go beyond the typical tourist experience.
+
+Train travel is the perfect embodiment of slow travel. Unlike planes, trains allow you to see the landscape change gradually, to understand the geography and culture of the places you're passing through. You're not just transported from point A to point B—you're part of the journey.
+
+This approach to travel is also more sustainable. By choosing trains over planes, you're reducing your carbon footprint while supporting local economies. It's a way of traveling that benefits both you and the places you visit.`,
+    imageUrl: getImageByIndex(1),
+    publishedAt: new Date(2024, 1, 10).toISOString(),
+    author: 'Camino Editorial',
+    category: 'Tips',
+  },
+  {
+    id: '3',
+    slug: 'paris-to-provence-journey',
+    title: 'From Paris to Provence: A Journey Through France',
+    excerpt: 'Experience the diversity of France on this scenic rail journey from the capital to the Mediterranean.',
+    content: `France offers one of the most diverse and beautiful train journeys in Europe. Starting in Paris, the City of Light, you'll travel south through rolling countryside, past vineyards and medieval towns, until you reach the sun-drenched landscapes of Provence.
+
+The journey begins in Paris, where you can spend a few days exploring world-class museums, charming neighborhoods, and iconic landmarks. From there, the train takes you to Lyon, France's gastronomic capital, where you can sample some of the best food in the country.
+
+Continuing south, you'll reach Avignon, with its famous bridge and papal palace. The final destination is Aix-en-Provence, a beautiful town known for its fountains, markets, and connection to the artist Cézanne.
+
+This journey showcases the incredible diversity of France—from the urban sophistication of Paris to the rural charm of Provence. Each stop offers something unique, and traveling by train allows you to see how the landscape and culture change as you move south.`,
+    imageUrl: getImageByIndex(2),
+    publishedAt: new Date(2024, 2, 5).toISOString(),
+    author: 'Camino Editorial',
+    category: 'Stories',
+  },
+  {
+    id: '4',
+    slug: 'italy-rail-adventure',
+    title: 'Italy\'s Iconic Cities: Venice, Florence & Rome',
+    excerpt: 'Discover three of Italy\'s most beautiful cities on this unforgettable rail journey.',
+    content: `Italy is a country made for train travel. The high-speed rail network connects major cities efficiently, but it's the regional trains that offer the most authentic experience, winding through the Italian countryside.
+
+Start in Venice, the floating city, where canals replace streets and every corner reveals a new wonder. Spend your days getting lost in the maze of narrow streets, visiting St. Mark's Square, and taking gondola rides through the canals.
+
+From Venice, travel to Florence, the birthplace of the Renaissance. Here you'll find some of the world's greatest art, from Michelangelo's David to Botticelli's Birth of Venus. The city itself is a work of art, with its red-tiled roofs and the iconic Duomo.
+
+Finally, arrive in Rome, the Eternal City. Here, ancient history meets modern life. You can visit the Colosseum in the morning, have lunch in a traditional trattoria, and end the day at the Trevi Fountain. The layers of history are everywhere, from ancient ruins to Baroque churches.
+
+This journey through Italy's three most iconic cities offers a perfect introduction to the country's art, history, and culture.`,
+    imageUrl: getImageByIndex(3),
+    publishedAt: new Date(2024, 2, 20).toISOString(),
+    author: 'Camino Editorial',
+    category: 'Destinations',
+  },
+  {
+    id: '5',
+    slug: 'sustainable-travel-guide',
+    title: 'A Guide to Sustainable Travel',
+    excerpt: 'How to reduce your environmental impact while exploring the world.',
+    content: `Sustainable travel is becoming increasingly important as we become more aware of our environmental impact. Traveling by train is one of the most sustainable ways to explore Europe, with significantly lower carbon emissions than flying.
+
+When planning a sustainable trip, consider the following:
+
+1. Choose trains over planes for shorter distances
+2. Pack light to reduce fuel consumption
+3. Support local businesses and communities
+4. Respect local cultures and environments
+5. Offset your carbon footprint when necessary
+
+Train travel offers a unique opportunity to see the landscape change gradually, to understand the geography and culture of the places you're passing through. It's a more immersive experience that connects you with the places you visit.
+
+By choosing sustainable travel options, you're not just reducing your environmental impact—you're also supporting local economies and having a more meaningful travel experience.`,
+    imageUrl: getImageByIndex(4),
+    publishedAt: new Date(2024, 3, 1).toISOString(),
+    author: 'Camino Editorial',
+    category: 'Tips',
+  },
+];
+
+// Generate more articles to reach 20
+for (let i = 5; i < 20; i++) {
+  const categories = ['Destinations', 'Tips', 'Stories', 'Culture'];
+  const titles = [
+    'Exploring the Swiss Alps',
+    'Coastal Journeys in Spain',
+    'The Art of Packing Light',
+    'Local Cuisine Along the Rails',
+    'Hidden Gems of Eastern Europe',
+    'Travel Photography Tips',
+    'Meeting Locals on Your Journey',
+    'The History of European Railways',
+    'Seasonal Travel Guide',
+    'Budget-Friendly Rail Travel',
+    'Family Travel by Train',
+    'Solo Travel Adventures',
+    'Cultural Immersion Tips',
+    'Railway Architecture',
+    'Sustainable Tourism',
+  ];
+  
+  staticArticles.push({
+    id: String(i + 1),
+    slug: `article-${i + 1}`,
+    title: titles[i - 5] || `Journal Article ${i + 1}`,
+    excerpt: `Discover the hidden gems and travel tips in our latest journal entry about ${titles[i - 5] || 'travel'}.`,
+    content: `This is the full content for ${titles[i - 5] || `article ${i + 1}`}. Here you'll find detailed information, tips, and insights about traveling by train in Europe. The journey is as important as the destination, and we're here to help you make the most of every moment.
+
+Whether you're planning your first train journey or you're a seasoned rail traveler, there's always something new to discover. From practical tips to inspiring stories, our journal covers everything you need to know about slow, sustainable travel.
+
+Join us as we explore the beautiful landscapes, vibrant cultures, and unforgettable experiences that await you on Europe's railways.`,
+    imageUrl: getImageByIndex(i % 10),
+    publishedAt: new Date(2024, Math.floor(i / 3), (i % 28) + 1).toISOString(),
+    author: 'Camino Editorial',
+    category: categories[i % 4],
+  });
+}
 
 // FAQs
-export const mockFAQs: FAQ[] = [
+export const staticFAQs: FAQ[] = [
   {
     id: '1',
     question: 'How do I book a trip?',
@@ -985,8 +1006,8 @@ const moreFAQQuestions = [
 ];
 
 moreFAQQuestions.forEach((faq) => {
-  mockFAQs.push({
-    id: String(mockFAQs.length + 1),
+  staticFAQs.push({
+    id: String(staticFAQs.length + 1),
     question: faq.q,
     answer: faq.a,
     category: faq.cat as any,
@@ -994,7 +1015,7 @@ moreFAQQuestions.forEach((faq) => {
 });
 
 // Reviews
-export const mockReviews: Review[] = Array.from({ length: 25 }, (_, i) => {
+export const staticReviews: Review[] = Array.from({ length: 25 }, (_, i) => {
   const ratings = [5, 5, 5, 4, 5, 5, 4, 5, 5, 5, 4, 5, 5, 5, 4, 5, 5, 5, 5, 4, 5, 5, 5, 5, 5];
   const authors = ['Sarah M.', 'James T.', 'Emma L.', 'Michael R.', 'Sophie K.', 'David P.', 'Lisa W.', 'Tom H.', 'Anna B.', 'Chris F.'];
   const comments = [
@@ -1015,8 +1036,7 @@ export const mockReviews: Review[] = Array.from({ length: 25 }, (_, i) => {
     author: authors[i % authors.length] + String(Math.floor(i / authors.length) + 1),
     rating: ratings[i] || 5,
     comment: comments[i % comments.length],
-    tripSlug: mockTrips[i % mockTrips.length].slug,
+    tripSlug: staticTrips[i % staticTrips.length].slug,
     date: new Date(2024, Math.floor(Math.random() * 12), Math.floor(Math.random() * 28) + 1).toISOString(),
   };
 });
-

@@ -33,8 +33,8 @@ const getImageByKeywordLocal = (keyword: string): string => {
  */
 export const getUnsplashImage = (
   keywords: string,
-  width: number = 1600,
-  height: number = 900
+  _width: number = 1600,
+  _height: number = 900
 ): string => {
   return getImageByKeywordLocal(keywords);
 };
@@ -44,28 +44,28 @@ export const getUnsplashImage = (
  */
 export const getImageByKeyword = (
   keyword: string,
-  w: number = 1600,
-  h: number = 900
+  _w: number = 1600,
+  _h: number = 900
 ): string => {
   return getImageByKeywordLocal(keyword);
 };
 
-export const getTripImage = (slug: string, width: number = 1600, height: number = 900): string => {
+export const getTripImage = (slug: string, _width: number = 1600, _height: number = 900): string => {
   return getImageByKeywordLocal(`train,travel,${slug}`);
 };
 
 export const getDestinationImage = (
   name: string,
-  width: number = 1600,
-  height: number = 900
+  _width: number = 1600,
+  _height: number = 900
 ): string => {
   return getImageByKeywordLocal(`city,${name.toLowerCase()}`);
 };
 
 export const getCollectionImage = (
   keywords: string,
-  width: number = 1600,
-  height: number = 900
+  _width: number = 1600,
+  _height: number = 900
 ): string => {
   return getImageByKeywordLocal(keywords);
 };

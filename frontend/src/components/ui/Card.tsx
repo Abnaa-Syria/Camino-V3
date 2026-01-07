@@ -1,4 +1,4 @@
-import { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from 'react';
 import { motion } from 'framer-motion';
 
 export interface CardProps extends HTMLAttributes<HTMLDivElement> {
@@ -17,7 +17,7 @@ export default function Card({ children, interactive = false, hover = true, clas
       <motion.div
         className={classes}
         whileHover={{ y: -4 }}
-        {...props}
+        {...(props as any)}
       >
         {children}
       </motion.div>

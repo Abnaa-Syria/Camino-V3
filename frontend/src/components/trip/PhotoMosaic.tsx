@@ -54,7 +54,7 @@ export default function PhotoMosaic({ trip }: PhotoMosaicProps) {
 
       {showModal && (
         <div
-          className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4 sm:p-8"
+          className="fixed inset-0 bg-black/95 z-[1000] flex items-center justify-center p-4 sm:p-8"
           onClick={() => setShowModal(false)}
         >
           <div 

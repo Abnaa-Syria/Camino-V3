@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 import { api } from '../api/client';
 import Button from './ui/Button';
 import Input from './ui/Input';
